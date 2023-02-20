@@ -1,83 +1,114 @@
 function LinkedList() {
-	let list = [];
-
-	// initialize the root node
-	const rootNode = Node();
-	rootNode.data = 'ROOT';
-	list.push(rootNode);
+	// initialize the head node
+	const headNode = Node();
+	headNode.data = 'HEAD';
+	headNode.ptr = null;
+	// ( HEAD ) -> null
 
 	const append = (value) => {
+		const lastNode = tail(); // the last node
 		const newNode = Node();
+		lastNode.ptr = newNode;
+		newNode.ptr = null;
 		newNode.data = value;
-		list.at(-1).ptr = newNode; // the last node in the list
-		list.push(newNode);
 	}
 
 	const prepend = (value) => {
 		const newNode = Node();
+		newNode.ptr = headNode.ptr;
+		headNode.ptr = newNode;
 		newNode.data = value;
-		newNode.ptr = list.at(0); // the first node in the list
-		list.unshift(newNode);
 	}
 
 	const size = () => {
-		return list.length;
+		let len = 0;
+		let targetNode = headNode;
+		while (targetNode.ptr !== null) {
+			targetNode = targetNode.ptr;
+			len++
+		}
+		return len;
 	}
 
-	const head = () => {
-		return list.at(0);
-	}
+	const head = () => headNode.ptr;
 
 	const tail = () => {
-		return list.at(-1);
+		let targetNode = headNode;
+		while (targetNode.ptr !== null) { // algorithm to find the last node
+			targetNode = targetNode.ptr;
+		}
+		return targetNode;
 	}
 
 	const at = (index) => {
-		return list.at(index);
+		if (index >= size()) return;
+		let num = -1; // starts from the head node
+		let targetNode = headNode;
+
+		while (!(num >= index)) {
+			targetNode = targetNode.ptr;
+			num++
+		}
+		return targetNode;
 	}
 
 	const pop = () => {
-		list.pop();
+		if (size() <= 0) return;
+		let targetNode = headNode;
+		while (targetNode.ptr.ptr !== null) { // find the node that points the last node
+			targetNode = targetNode.ptr;
+		}
+		targetNode.ptr = null;
 	}
 
 	const contains = (value) => {
-		return list.some(el => el.data === value);
+		let targetNode = headNode;
+		while (targetNode !== null) {
+			if (targetNode.data === value) {
+				return true
+			}
+			targetNode = targetNode.ptr;
+		}
+		return false;
 	}
 
 	const find = (value) => {
-		for (idx in list) {
-			if (list[idx].data === value) {
-				return idx;
+		let len = -1; // starts from the head node
+		let targetNode = headNode;
+		while (targetNode !== null) {
+			if (targetNode.data === value) {
+				return len;
 			}
-		}
+				targetNode = targetNode.ptr;
+				len++;
+			}
 		return null;
 	}
 
 	const toString = () => {
 		let str = '';
-		list.forEach(el => {
-			const temp = `( ${el.data} ) -> `;
-			str += temp;
-		})
+		let targetNode = headNode;
+		while (targetNode !== null) {
+			str += `( ${targetNode.data} ) -> `;
+			targetNode = targetNode.ptr;
+		}
 		str += 'null';
-		return str;
+		return str
 	}
 
 	const insertAt = (value, index) => {
-		if (index > list.length) return;
+		const nodeOne = at(index-1);
+		const nodeTwo = at(index);
 		const newNode = Node();
+		nodeOne.ptr = newNode;
+		newNode.ptr = nodeTwo;
 		newNode.data = value;
-		newNode.ptr = list[index];
-		list[index - 1].ptr = newNode;
-		const result = list.slice(0, index).concat(newNode).concat(list.slice(index));
-		list = result;
 	}
 
 	const removeAt = (index) => {
-		if (index > list.length - 1) return;
-		list[index - 1].ptr = list[index].ptr;
-		const result = list.slice(0, index).concat(list.slice(index + 1));
-		list = result;
+		const nodeOne = at(index-1);
+		const nodeTwo = at(index);
+		nodeOne.ptr = nodeTwo.ptr;
 	}
 
 	return {
@@ -90,9 +121,9 @@ function LinkedList() {
 		pop,
 		contains,
 		find,
-		toString,
 		insertAt,
-		removeAt
+		removeAt,
+		toString
 	}
 }
 
