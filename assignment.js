@@ -128,10 +128,8 @@ function LinkedList() {
 }
 
 function Node() {
-	let data = null;
-	let ptr = null; // another node
 	return {
-		data,
-		ptr
+		data: null,
+		ptr: null
 	}
 }
