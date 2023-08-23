@@ -12,16 +12,8 @@ function LinkedList() {
   headNode.ptr = null;
   // ( HEAD ) -> null
 
-  const getTailNode = () => {
-    let currentNode = headNode;
-    while (currentNode.ptr !== null) { // algorithm to find the last node
-      currentNode = currentNode.ptr;
-    }
-    return currentNode;
-  };
-
   const append = (value) => {
-    const tailNode = getTailNode(); // the last node
+    const tailNode = tail(); // the last node
     const newNode = Node();
     tailNode.ptr = newNode;
 
@@ -50,6 +42,14 @@ function LinkedList() {
   };
 
   const head = () => headNode.ptr;
+
+  const tail = () => {
+    let currentNode = headNode;
+    while (currentNode.ptr !== null) { // algorithm to find the last node
+      currentNode = currentNode.ptr;
+    }
+    return currentNode;
+  };
 
   const at = (index) => {
     if (index >= size()) return;
@@ -127,7 +127,7 @@ function LinkedList() {
     prepend,
     size,
     head,
-    tail: getTailNode,
+    tail,
     at,
     pop,
     contains,
