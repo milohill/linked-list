@@ -40,13 +40,13 @@ function LinkedList() {
   // (HEAD) -> (new node) -> (a node pointed by HEAD previously) -> ...
 
   const size = () => {
-    let len = 0;
-    let targetNode = headNode;
-    while (targetNode.ptr !== null) {
-      targetNode = targetNode.ptr;
-      len++;
+    let count = 0;
+    let currentNode = headNode;
+    while (currentNode.ptr !== null) {
+      currentNode = currentNode.ptr;
+      count += 1;
     }
-    return len;
+    return count;
   };
 
   const head = () => headNode.ptr;
