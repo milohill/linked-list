@@ -16,6 +16,7 @@ function LinkedList() {
     const tailNode = getTail(); // the last node
     const newNode = Node();
     tailNode.ptr = newNode;
+
     newNode.ptr = null;
     newNode.data = value;
   };
@@ -23,10 +24,12 @@ function LinkedList() {
 
   const prepend = (value) => {
     const newNode = Node();
-    newNode.ptr = headNode.ptr;
     headNode.ptr = newNode;
+
+    newNode.ptr = headNode.ptr;
     newNode.data = value;
   };
+  // (HEAD) -> (new node) -> (a node pointed by HEAD previously) -> ...
 
   const size = () => {
     let len = 0;
