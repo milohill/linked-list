@@ -13,12 +13,13 @@ function LinkedList() {
   // ( HEAD ) -> null
 
   const append = (value) => {
-    const lastNode = getTail(); // the last node
+    const tailNode = getTail(); // the last node
     const newNode = Node();
-    lastNode.ptr = newNode;
+    tailNode.ptr = newNode;
     newNode.ptr = null;
     newNode.data = value;
   };
+  // (old tail node) -> (new tail node) -> null
 
   const prepend = (value) => {
     const newNode = Node();
