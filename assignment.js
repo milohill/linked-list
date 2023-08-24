@@ -114,6 +114,10 @@ function LinkedList() {
   };
 
   const insertAt = (value, index) => {
+    if (index > size()) return;
+    // when the index given exceeds the size of the list there will be no front node to point
+    // the new node therefore return.
+
     const frontNode = at(index - 1);
     const rearNode = at(index);
     const newNode = Node();
@@ -143,3 +147,10 @@ function LinkedList() {
     removeAt,
   };
 }
+
+const list = LinkedList();
+list.append('first');
+list.append('second');
+list.insertAt('new', 4);
+
+console.log(list.toString());
