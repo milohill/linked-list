@@ -90,14 +90,14 @@ function LinkedList() {
   };
 
   const find = (value) => {
-    let len = -1; // starts from the head node
-    let targetNode = headDummyNode;
-    while (targetNode !== null) {
-      if (targetNode.data === value) {
-        return len;
+    let count = -1; // starts from the head dummy node
+    let currentNode = headDummyNode;
+    while (currentNode.ptr !== null) {
+      if (currentNode.data === value) {
+        return count;
       }
-      targetNode = targetNode.ptr;
-      len++;
+      currentNode = currentNode.ptr;
+      count += 1;
     }
     return null;
   };
