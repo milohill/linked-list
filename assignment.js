@@ -143,11 +143,3 @@ function LinkedList() {
     removeAt,
   };
 }
-const list = LinkedList();
-list.append('second');
-list.prepend('first');
-console.log(list.toString());
-console.log(list.find('second'));
-
-// console.log('find');
-// console.log(list.find('second'));
