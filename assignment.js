@@ -8,7 +8,7 @@ function Node() {
 function LinkedList() {
   // initialize the head dummy node
   const headDummyNode = Node();
-  headDummyNode.data = null;
+  headDummyNode.data = 'head dummy node';
   headDummyNode.ptr = null;
   // ( head dummy node ) -> null
 
@@ -104,10 +104,10 @@ function LinkedList() {
 
   const toString = () => {
     let str = '';
-    let targetNode = headDummyNode;
-    while (targetNode !== null) {
-      str += `( ${targetNode.data} ) -> `;
-      targetNode = targetNode.ptr;
+    let currentNode = headDummyNode;
+    while (currentNode.ptr !== null) {
+      str += `( ${currentNode.data} ) -> `;
+      currentNode = currentNode.ptr;
     }
     str += 'null';
     return str;
