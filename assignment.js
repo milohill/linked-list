@@ -8,7 +8,7 @@ function Node() {
 function LinkedList() {
   // initialize the head node
   const headNode = Node();
-  headNode.data = 'HEAD';
+  headNode.data = null;
   headNode.ptr = null;
   // ( HEAD ) -> null
 
@@ -24,16 +24,14 @@ function LinkedList() {
 
   const prepend = (value) => {
     const newNode = Node();
-    headNode.ptr = newNode;
-
-    newNode.ptr = headNode.ptr;
+    newNode.ptr = head();
     newNode.data = value;
   };
-  // (HEAD) -> (new node) -> (a node pointed by HEAD previously) -> ...
+  // (new head node) -> (old head node) -> ...
 
   const size = () => {
     let count = 0;
-    let currentNode = headNode;
+    let currentNode = head();
     while (currentNode.ptr !== null) {
       currentNode = currentNode.ptr;
       count += 1;
@@ -41,10 +39,10 @@ function LinkedList() {
     return count;
   };
 
-  const head = () => headNode.ptr;
+  const head = () => headNode;
 
   const tail = () => {
-    let currentNode = headNode;
+    let currentNode = head();
     while (currentNode.ptr !== null) { // algorithm to find the last node
       currentNode = currentNode.ptr;
     }
@@ -53,14 +51,17 @@ function LinkedList() {
 
   const at = (index) => {
     if (index >= size()) return;
-    let num = -1; // starts from the head node
-    let targetNode = headNode;
+    // if the index required exceeds the maximum index possible, then return.
 
-    while (!(num >= index)) {
-      targetNode = targetNode.ptr;
-      num++;
+    let num = 0; // starts from the head node
+    let currentNode = head();
+
+    while (num < index) {
+      currentNode = currentNode.ptr;
+      num += 1;
     }
-    return targetNode;
+
+    return currentNode;
   };
 
   const pop = () => {
