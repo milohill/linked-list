@@ -79,12 +79,12 @@ function LinkedList() {
   };
 
   const contains = (value) => {
-    let targetNode = headDummyNode;
-    while (targetNode !== null) {
-      if (targetNode.data === value) {
+    let currentNode = headDummyNode;
+    while (currentNode.ptr !== null) {
+      if (currentNode.data === value) {
         return true;
       }
-      targetNode = targetNode.ptr;
+      currentNode = currentNode.ptr;
     }
     return false;
   };
