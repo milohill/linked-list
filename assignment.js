@@ -69,11 +69,13 @@ function LinkedList() {
 
   const pop = () => {
     if (size() <= 0) return;
-    let targetNode = headDummyNode;
-    while (targetNode.ptr.ptr !== null) { // find the node that points the last node
-      targetNode = targetNode.ptr;
+    // if the list is empty then no node to pop.
+    let currentNode = headDummyNode;
+    while (currentNode.ptr.ptr !== null) { // find the node that points the last node
+      currentNode = currentNode.ptr;
     }
-    targetNode.ptr = null;
+    currentNode.ptr = null;
+    // since JS is garbage collected no need to worry about deleting the last node.
   };
 
   const contains = (value) => {
