@@ -127,6 +127,10 @@ function LinkedList() {
   };
 
   const removeAt = (index) => {
+    if (index >= size()) return;
+    // when the index of the node is the same or more than the size of the list there will be
+    // no node available to delete therefore return.
+
     const nodeOne = at(index - 1);
     const nodeTwo = at(index);
     nodeOne.ptr = nodeTwo.ptr;
