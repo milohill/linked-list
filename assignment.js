@@ -53,7 +53,7 @@ function LinkedList() {
   };
 
   const at = (index) => {
-    if (index >= size()) return;
+    if (index >= size()) return null;
     // if the index required exceeds the maximum index possible, then return.
 
     let num = -1; // starts from the head node
@@ -114,11 +114,11 @@ function LinkedList() {
   };
 
   const insertAt = (value, index) => {
-    const nodeOne = at(index - 1);
-    const nodeTwo = at(index);
+    const frontNode = at(index - 1);
+    const rearNode = at(index);
     const newNode = Node();
-    nodeOne.ptr = newNode;
-    newNode.ptr = nodeTwo;
+    frontNode.ptr = newNode;
+    newNode.ptr = rearNode;
     newNode.data = value;
   };
 
