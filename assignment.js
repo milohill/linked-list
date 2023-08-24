@@ -80,7 +80,7 @@ function LinkedList() {
 
   const contains = (value) => {
     let currentNode = headDummyNode;
-    while (currentNode.ptr !== null) {
+    while (currentNode !== null) {
       if (currentNode.data === value) {
         return true;
       }
@@ -92,7 +92,7 @@ function LinkedList() {
   const find = (value) => {
     let count = -1; // starts from the head dummy node
     let currentNode = headDummyNode;
-    while (currentNode.ptr !== null) {
+    while (currentNode !== null) {
       if (currentNode.data === value) {
         return count;
       }
@@ -144,15 +144,10 @@ function LinkedList() {
   };
 }
 const list = LinkedList();
-list.append('first');
-list.prepend('second');
-console.log(list.size());
-console.log('head');
-console.log(list.head());
-console.log('tail');
-console.log(list.tail());
+list.append('second');
+list.prepend('first');
 console.log(list.toString());
-console.log('at');
-console.log(list.at(0));
-list.pop();
-console.log(list.toString());
+console.log(list.find('second'));
+
+// console.log('find');
+// console.log(list.find('second'));
