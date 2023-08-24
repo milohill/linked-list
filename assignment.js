@@ -131,9 +131,9 @@ function LinkedList() {
     // when the index of the node is the same or more than the size of the list there will be
     // no node available to delete therefore return.
 
-    const nodeOne = at(index - 1);
-    const nodeTwo = at(index);
-    nodeOne.ptr = nodeTwo.ptr;
+    const frontNode = at(index - 1);
+    const nodeToBeDeleted = at(index);
+    frontNode.ptr = nodeToBeDeleted.ptr;
   };
 
   return {
@@ -151,10 +151,3 @@ function LinkedList() {
     removeAt,
   };
 }
-
-const list = LinkedList();
-list.append('first');
-list.append('second');
-list.insertAt('new', 4);
-
-console.log(list.toString());
