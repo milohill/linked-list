@@ -65,6 +65,7 @@ function LinkedList() {
     }
 
     return currentNode;
+    // return the head dummy node when the index is -1.
   };
 
   const pop = () => {
