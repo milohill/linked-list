@@ -59,7 +59,7 @@ function LinkedList() {
     let num = -1; // starts from the head node
     let currentNode = headDummyNode;
 
-    while (num <= index) {
+    while (num < index) {
       currentNode = currentNode.ptr;
       num += 1;
     }
@@ -109,7 +109,7 @@ function LinkedList() {
       str += `( ${currentNode.data} ) -> `;
       currentNode = currentNode.ptr;
     }
-    str += 'null';
+    str += `( ${currentNode.data} ) -> null`;
     return str;
   };
 
@@ -138,8 +138,21 @@ function LinkedList() {
     pop,
     contains,
     find,
+    toString,
     insertAt,
     removeAt,
-    toString,
   };
 }
+const list = LinkedList();
+list.append('first');
+list.prepend('second');
+console.log(list.size());
+console.log('head');
+console.log(list.head());
+console.log('tail');
+console.log(list.tail());
+console.log(list.toString());
+console.log('at');
+console.log(list.at(0));
+list.pop();
+console.log(list.toString());
